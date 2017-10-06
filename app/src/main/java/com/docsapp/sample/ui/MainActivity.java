@@ -52,8 +52,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mMessageAdapter = new MessageListAdapter(this, mUserList);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
-        mMessageRecycler.setLayoutManager(llm);
+
         mMessageRecycler.setAdapter(mMessageAdapter);
+        mMessageRecycler.setLayoutManager(llm);
+        mMessageRecycler.scrollToPosition(0);
 
     }
 
@@ -102,6 +104,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         user.setNickname(nickname);
         user.setProfileUrl(profileUrl);
         user.setUserId(userId);
+        userMessage.setSender(user);
 
         mUserList.add(userMessage);
         mMessageAdapter.notifyDataSetChanged();
