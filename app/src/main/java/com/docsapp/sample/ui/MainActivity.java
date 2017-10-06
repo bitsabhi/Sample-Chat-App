@@ -49,6 +49,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mBtn.setOnClickListener(this);
         mEt = (EditText) findViewById(R.id.edittext_chatbox);
         mMessageRecycler = (RecyclerView) findViewById(R.id.reyclerview_message_list);
+        mMessageAdapter = new MessageListAdapter(this, mUserList);
+        LinearLayoutManager llm = new LinearLayoutManager(this);
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        mMessageRecycler.setLayoutManager(llm);
+        mMessageRecycler.setAdapter(mMessageAdapter);
 
     }
 
@@ -99,8 +104,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         user.setUserId(userId);
 
         mUserList.add(userMessage);
-        mMessageAdapter = new MessageListAdapter(this, mUserList);
-        mMessageRecycler.setLayoutManager(new LinearLayoutManager(this));
-        mMessageRecycler.setAdapter(mMessageAdapter);
+        mMessageAdapter.notifyDataSetChanged();
+
     }
 }
